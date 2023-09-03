@@ -4,20 +4,10 @@ import { styled } from "styled-components";
 import { useState } from "react";
 
 const CocktailsList = () => {
-  const [page, setPage] = useState(1);
+
   const { data, isLoading, isError } = useGetAllCocktailsQuery();
+  const [visibleCocktails, setVisibleCocktails] = useState(2);
 
-  const perPage = 5;
-
-  const nextPage = () => {
-    setPage((prevPage) => prevPage + 1);
-  };
-
-  const prevPage = () => {
-    if (page > 1) {
-      setPage((prevPage) => prevPage - 1);
-    }
-  };
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -27,16 +17,21 @@ const CocktailsList = () => {
     return <div>Error fetching data</div>;
   }
 
+  function handleShowMoreCocktails() {
+    setVisibleCocktails(visibleCocktails +2);
+  }
+
+
+
   return (
     <>
       <CocktailListTitle>Let's enjoy some cocktails</CocktailListTitle>
       <CocktailListContainer>
-        {data.drinks.map((cocktail) => (
+        {data.drinks.slice(0,visibleCocktails).map((cocktail) => (
           <CocktailCard key={cocktail.idDrink} cocktail={cocktail} />
         ))}
       </CocktailListContainer>
-      <button onClick={prevPage}>Previous Page</button>
-      <button onClick={nextPage}>Next Page</button>
+      <Button onClick={handleShowMoreCocktails}>Show more cocktails</Button>
     </>
   );
 };
@@ -53,3 +48,11 @@ const CocktailListTitle = styled.h2`
   margin-bottom: 16px;
   text-align: center;
 `;
+const Button = styled.button`
+background-color: #8390fa;
+color: #ffff;
+border: none; 
+padding: 8px 16px; 
+border-radius: 4px; 
+margin: 5px 550px 50px; 
+`

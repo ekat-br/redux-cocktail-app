@@ -11,9 +11,6 @@ export default function CocktailCard({ cocktail }) {
         src={cocktail.strDrinkThumb}
         alt={cocktail.strDrink}
       />{" "}
-      <article>
-        <span>{cocktail.strInstructionsDE}</span>
-      </article>
       <FavorizeButton id={cocktail.idDrink} />
     </CardContainer>
   );
@@ -28,16 +25,14 @@ const CardContainer = styled.li`
   flex-direction: column;
   align-items: center;
   margin: 16px;
-  background-color: #f6f6f6; /* Light Gray */
+  background-color: #f6f6f6; 
 `;
 
 const CocktailImage = styled.img`
-  max-width: 100%;
-  height: auto;
+  max-height: 200px;
+  width: auto;
   margin-bottom: 16px;
-  max-height: 300px;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 7px;
 `;
 
 const CocktailTitle = styled.h2`

@@ -31,7 +31,10 @@ const CocktailsList = () => {
           <CocktailCard key={cocktail.idDrink} cocktail={cocktail} />
         ))}
       </CocktailListContainer>
-      <Button onClick={handleShowMoreCocktails}>Show more cocktails</Button>
+      <ButtonContainer>
+       <Button onClick={handleShowMoreCocktails}>Show more cocktails</Button>
+      </ButtonContainer>
+      
     </>
   );
 };
@@ -40,6 +43,15 @@ export default CocktailsList;
 
 const CocktailListContainer = styled.ul`
   padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  max-width: 800px; 
+  margin: 0 auto; 
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr; /* One column for mobile view */
+  }
 `;
 
 const CocktailListTitle = styled.h2`
@@ -48,11 +60,15 @@ const CocktailListTitle = styled.h2`
   margin-bottom: 16px;
   text-align: center;
 `;
+const ButtonContainer = styled.div`
+  text-align: center;
+`;
 const Button = styled.button`
 background-color: #8390fa;
 color: #ffff;
 border: none; 
 padding: 8px 16px; 
 border-radius: 4px; 
-margin: 5px 550px 50px; 
+margin: 20px ;
 `
+

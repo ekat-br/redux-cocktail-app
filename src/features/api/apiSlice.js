@@ -3,16 +3,13 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const cocktailApi = createApi({
   reducerPath: "cocktailApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://www.thecocktaildb.com/api/json/v1/1/",
+    baseUrl: "/",
   }),
   endpoints: (builder) => ({
     getAllCocktails: builder.query({
-      query: () => "search.php?s=",
-    }),
-    getCocktail: builder.query({
-      query: (product) => `search.php?s=${product}`,
+      query: () => "data/cocktails.json",
     }),
   }),
 });
 
-export const { useGetAllCocktailsQuery, useGetCocktailQuery } = cocktailApi;
+export const { useGetAllCocktailsQuery } = cocktailApi;

@@ -1,25 +1,24 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  selectFavorizedIds,
-  toggleFavorize,
-} from "../features/favorize/favorizeSlice";
+  selectFavoritesIds,  toggledFavorite,
+} from "./favoritesSlice";
 import { styled } from "styled-components";
 
-const FavorizeButton = ({ id }) => {
-  const favorizedIds = useSelector(selectFavorizedIds);
+const FavoriteButton = ({ id }) => {
+  const favorizedIds = useSelector(selectFavoritesIds);
   const dispatch = useDispatch();
 
   return (
-    <FavoriteButton onClick={() => dispatch(toggleFavorize(id))}>
+    <Button onClick={() => dispatch(toggledFavorite(id))}>
       {favorizedIds.includes(id) ? "❤️" : "🤍"}
-    </FavoriteButton>
+    </Button>
   );
 };
 
-export default FavorizeButton;
+export default FavoriteButton;
 
-const FavoriteButton = styled.button`
+const Button = styled.button`
   background-color: "#E0E0E0";
   color: #ffffff;
   border: none;

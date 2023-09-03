@@ -1,9 +1,9 @@
-import { useGetAllCocktailsQuery } from "../features/api/apiSlice";
+import { useGetAllCocktailsQuery } from "../api/apiSlice";
 import CocktailCard from "./CocktailCard";
 import { styled } from "styled-components";
 import { useState } from "react";
 
-const CocktailsList = () => {
+export default function CocktailsList(){
 
   const { data, isLoading, isError } = useGetAllCocktailsQuery();
   const [visibleCocktails, setVisibleCocktails] = useState(2);
@@ -25,7 +25,7 @@ const CocktailsList = () => {
 
   return (
     <>
-      <CocktailListTitle>Let's enjoy some cocktails</CocktailListTitle>
+      <CocktailListTitle>🍹let's enjoy some cocktails🍹</CocktailListTitle>
       <CocktailListContainer>
         {data.drinks.slice(0,visibleCocktails).map((cocktail) => (
           <CocktailCard key={cocktail.idDrink} cocktail={cocktail} />
@@ -39,7 +39,6 @@ const CocktailsList = () => {
   );
 };
 
-export default CocktailsList;
 
 const CocktailListContainer = styled.ul`
   padding: 0;

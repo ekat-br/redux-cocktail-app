@@ -1,10 +1,10 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectFavorizedIds } from "../features/favorize/favorizeSlice";
-import { useGetAllCocktailsQuery } from "../features/api/apiSlice";
+import { selectFavoritesIds } from "./favoritesSlice";
+import { useGetAllCocktailsQuery } from "../api/apiSlice";
 
-const Favorites = () => {
-  const favorizedIds = useSelector(selectFavorizedIds);
+const FavoritesPage = () => {
+  const favorizedIds = useSelector(selectFavoritesIds);
   const { data, isLoading, isError } = useGetAllCocktailsQuery();
 
   if (isLoading) {
@@ -15,7 +15,7 @@ const Favorites = () => {
     return <div>Error fetching data</div>;
   }
 
-  const favorizedCocktails = data.drinks.filter((cocktail) =>
+  const favoriteCocktails = data.drinks.filter((cocktail) =>
     favorizedIds.includes(cocktail.idDrink)
   );
 
@@ -23,8 +23,8 @@ const Favorites = () => {
     <div>
       <h2>Your Favorized Cocktails</h2>
       <ul>
-        {favorizedCocktails ? (
-          favorizedCocktails.map((cocktail) => (
+        {favoriteCocktails ? (
+          favoriteCocktails.map((cocktail) => (
             <li key={cocktail.idDrink}>{cocktail.strDrink}</li>
           ))
         ) : (
@@ -35,4 +35,4 @@ const Favorites = () => {
   );
 };
 
-export default Favorites;
+export default FavoritesPage;

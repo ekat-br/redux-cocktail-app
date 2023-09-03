@@ -1,8 +1,7 @@
 import { styled } from "styled-components";
-import FavorizeButton from "./FavorizeButton";
+import FavoriteButton from "../favorites/FavoriteButton";
 
 export default function CocktailCard({ cocktail }) {
-  console.log(cocktail.idDrink);
   return (
     <CardContainer>
       <CocktailTitle>{cocktail.strDrink}</CocktailTitle>{" "}
@@ -11,7 +10,7 @@ export default function CocktailCard({ cocktail }) {
         src={cocktail.strDrinkThumb}
         alt={cocktail.strDrink}
       />{" "}
-      <FavorizeButton id={cocktail.idDrink} />
+      <FavoriteButton id={cocktail.idDrink} />
     </CardContainer>
   );
 }

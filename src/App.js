@@ -1,16 +1,17 @@
 import Navigation from "./components/Navigation";
-import { Route, Routes } from "react-router-dom";
-import Home from "./pages/Home";
-import Favorites from "./pages/Favorites";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Favorites from "./features/favorites/FavoritesPage";
+import CocktailsList from "./features/cocktails/CocktailsList";
+
 function App() {
   return (
-    <>
+    <Router>
       <Navigation />
       <Routes>
-        <Route exact path="/" element={<Home />} />
-        <Route exact path="/favorites" element={<Favorites />} />
+        <Route exact path="/" element={<CocktailsList />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
-    </>
+    </Router>
   );
 }
 

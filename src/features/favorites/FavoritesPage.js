@@ -1,11 +1,13 @@
-import React from "react";
 import { useSelector } from "react-redux";
 import { selectFavoritesIds } from "./favoritesSlice";
 import { useGetAllCocktailsQuery } from "../api/apiSlice";
+import { styled } from "styled-components";
+import CocktailCard from "../cocktails/CocktailCard";
 
 const FavoritesPage = () => {
-  const favorizedIds = useSelector(selectFavoritesIds);
+  const favoriteCocktailIds = useSelector(selectFavoritesIds);
   const { data, isLoading, isError } = useGetAllCocktailsQuery();
+
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -16,23 +18,27 @@ const FavoritesPage = () => {
   }
 
   const favoriteCocktails = data.drinks.filter((cocktail) =>
-    favorizedIds.includes(cocktail.idDrink)
+  favoriteCocktailIds.includes(cocktail.idDrink)
   );
 
   return (
-    <div>
-      <h2>Your Favorized Cocktails</h2>
-      <ul>
-        {favoriteCocktails ? (
-          favoriteCocktails.map((cocktail) => (
-            <li key={cocktail.idDrink}>{cocktail.strDrink}</li>
-          ))
-        ) : (
-          <li>No favorized cocktails found.</li>
+    <Container>
+      <Title>Your Favorite Cocktails</Title>
+      <Container>
+        {favoriteCocktails.map((cocktail) => 
+          <CocktailCard cocktail={cocktail} key={cocktail.id}/>
         )}
-      </ul>
-    </div>
+      </Container>
+    </Container>
   );
 };
 
 export default FavoritesPage;
+
+const Container = styled.div`
+text-align: center;
+margin-top: 50px;
+`
+const Title = styled.h2`
+color: #fff;
+`

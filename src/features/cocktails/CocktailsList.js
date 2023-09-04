@@ -24,7 +24,7 @@ export default function CocktailsList(){
 
 
   return (
-    <>
+    <Container>
       <CocktailListTitle>🍹let's enjoy some cocktails🍹</CocktailListTitle>
       <CocktailListContainer>
         {data.drinks.slice(0,visibleCocktails).map((cocktail) => (
@@ -35,11 +35,13 @@ export default function CocktailsList(){
        <Button onClick={handleShowMoreCocktails}>Show more cocktails</Button>
       </ButtonContainer>
       
-    </>
+    </Container>
   );
 };
 
-
+const Container = styled.div`
+margin-top: 50px;
+`
 const CocktailListContainer = styled.ul`
   padding: 0;
   display: grid;

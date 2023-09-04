@@ -1,13 +1,14 @@
 import React from "react";
 import { styled } from "styled-components";
+import { Link } from "react-router-dom";
 
 const Navigation = () => {
   return (
     <NavContainer>
-      <NavAppTitle href="/">Cocktail App</NavAppTitle>
+      <NavLink to="/">Cocktail App 🍹</NavLink>
       <NavList>
         <NavListElement>
-          <NavListAnchor href="/favorites">My Favorite Cocktails</NavListAnchor>
+          <NavLink to="/favorites">❤️My Favorite Cocktails</NavLink>
         </NavListElement>
       </NavList>
     </NavContainer>
@@ -21,19 +22,14 @@ const NavContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 2rem;
-  padding: 0 1rem;
+  padding: 0.5rem;
+  position: fixed; 
+  z-index: 1;
+  width: 100%;
+  top: 0;
 `;
 
-const NavAppTitle = styled.a`
-  color: #fff;
-  font-size: 1.2rem;
-  text-decoration: none;
-  &:hover,
-  &:active {
-    color: #093824;
-  }
-`;
+
 
 const NavList = styled.ul`
   padding: 0;
@@ -46,12 +42,9 @@ const NavList = styled.ul`
 const NavListElement = styled.li`
   color: #ffff;
 `;
-const NavListAnchor = styled.a`
-  color: #ffff;
-  text-decoration: none;
 
-  &:hover,
-  &:active {
-    color: #093824;
-  }
-`;
+const NavLink = styled(Link)`
+text-decoration: none; 
+color: #fff;
+margin: 0 12px 0 0; 
+`

@@ -13,9 +13,9 @@ export const favoritesSlice = createSlice({
       } else {
         state.favoritesIds.push(idToToggle);
       }
-      localStorage.setItem("favorize", JSON.stringify(state.favorize))
-    },
-  },
+      localStorage.setItem("favorites", JSON.stringify(state.favoritesIds));
+    }
+  }
 });
 
 

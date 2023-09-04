@@ -9,12 +9,19 @@ const FavoriteButton = ({ id }) => {
   const favorizedIds = useSelector(selectFavoritesIds);
   const dispatch = useDispatch();
 
+  const handleButtonClick = (e) => {
+    e.stopPropagation(); // Stop the click event from propagating to parent elements
+    dispatch(toggledFavorite(id));
+  };
+
   return (
-    <Button onClick={() => dispatch(toggledFavorite(id))}>
+    <Button onClick={handleButtonClick}>
       {favorizedIds.includes(id) ? "❤️" : "🤍"}
     </Button>
   );
 };
+
+
 
 export default FavoriteButton;
 
@@ -28,6 +35,6 @@ const Button = styled.button`
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
-    background-color: "#B0B0B0"; /* Darker Pink for hover */
+    background-color: "#B0B0B0"; 
   }
 `;
